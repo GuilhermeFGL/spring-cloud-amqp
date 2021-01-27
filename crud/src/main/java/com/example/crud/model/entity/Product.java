@@ -37,7 +37,7 @@ public class Product implements Serializable {
 	private Long id;
 
 	@Column(nullable = false, length = 255)
-	private String nome;
+	private String name;
 
 	@Column(nullable = false, length = 10)
 	private Integer quantity;
