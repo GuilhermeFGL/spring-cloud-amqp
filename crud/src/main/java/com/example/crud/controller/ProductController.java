@@ -34,16 +34,16 @@ public class ProductController {
 		this.productService = productService;
 		this.assembler = assembler;
 	}
-	
+
 	@GetMapping(value = "/{id}")
 	public ProductDto findById(@PathVariable("id") Long id) {
 		ProductDto productDto = productService.findById(id);
 		productDto.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ProductController.class).findById(id))
 				.withSelfRel());
-		
+
 		return productDto;
 	}
-	
+
 	@GetMapping
 	public ResponseEntity<?> findAll(@RequestParam(value = "page", defaultValue = "0") int page,
 			@RequestParam(value = "limit", defaultValue = "10") int limit,
@@ -62,7 +62,7 @@ public class ProductController {
 		productDto.add(WebMvcLinkBuilder
 				.linkTo(WebMvcLinkBuilder.methodOn(ProductController.class).findById(productDto.getId()))
 				.withSelfRel());
-		
+
 		return productDto;
 	}
 
@@ -72,15 +72,15 @@ public class ProductController {
 		productDto.add(WebMvcLinkBuilder
 				.linkTo(WebMvcLinkBuilder.methodOn(ProductController.class).findById(requestDto.getId()))
 				.withSelfRel());
-	
+
 		return productDto;
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
 		productService.delete(id);
-		
+
 		return ResponseEntity.ok().build();
 	}
-	
+
 }
