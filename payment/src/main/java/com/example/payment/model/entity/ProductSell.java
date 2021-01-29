@@ -43,7 +43,7 @@ public class ProductSell implements Serializable {
 	private Long idProduct;
 
 	@Column(nullable = false, length = 10)
-	private Integer quantidade;
+	private Integer quantity;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_sell")

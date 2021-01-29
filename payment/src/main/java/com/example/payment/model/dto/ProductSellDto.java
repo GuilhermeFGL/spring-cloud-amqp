@@ -25,7 +25,6 @@ public class ProductSellDto extends RepresentationModel<ProductSellDto> implemen
 	private static final long serialVersionUID = 3277044024726131411L;
 
 	private Long id;
-	private Long idProduct;
 	private Integer quantity;
 
 	public static ProductSellDto create(ProductSell productSell) {

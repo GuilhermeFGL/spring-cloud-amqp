@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.hateoas.RepresentationModel;
 
 import com.example.payment.model.entity.Sell;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -27,9 +28,11 @@ public class SellDto extends RepresentationModel<SellDto> implements Serializabl
 	private static final long serialVersionUID = -7334701345685781346L;
 
 	private Long id;
-	private LocalDate date;
-	private List<ProductSellDto> productSells;
 	private Double total;
+	private List<ProductSellDto> productSells;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate date;
 
 	public static SellDto create(Sell sell) {
 		return new ModelMapper().map(sell, SellDto.class);
