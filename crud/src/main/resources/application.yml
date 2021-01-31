@@ -19,3 +19,14 @@ spring:
     url: jdbc:mysql://localhost:3306/crud?allowPublicKeyRetrieval=true&sslMode=DISABLED&useSSL=false&serverTimezone=UTC
     username: user
     password: password
+    
+  rabbitmq:
+    host: localhost 
+    port: 5672
+    username: guest
+    password: guest 
+    
+crud:
+  rabbitmq:
+    exchange: crud.exchange
+    routingkey: crud.product.routingkey
