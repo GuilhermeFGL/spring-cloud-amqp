@@ -9,6 +9,7 @@ import com.example.crud.exception.ResourceNotFoundException;
 import com.example.crud.model.dto.ProductDto;
 import com.example.crud.model.entity.Product;
 import com.example.crud.repository.ProductRepository;
+import com.example.crud.service.ProductMessageService;
 import com.example.crud.service.ProductService;
 
 @Component
@@ -17,10 +18,12 @@ public class ProductServiceImpl implements ProductService {
 	private static final String MSG_NO_RECORDS_FOUND = "No records found for this ID";
 
 	private ProductRepository productRepository;
+	private ProductMessageService productMessageService;
 
 	@Autowired
-	public ProductServiceImpl(ProductRepository productRepository) {
+	public ProductServiceImpl(ProductRepository productRepository, ProductMessageService productMessageService) {
 		this.productRepository = productRepository;
+		this.productMessageService = productMessageService;
 	}
 
 	@Override
@@ -35,7 +38,9 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public ProductDto create(ProductDto productDto) {
-		return this.persist(productDto);
+		productDto = this.persist(productDto);
+		this.productMessageService.sendMessage(productDto);
+		return productDto;
 	}
 
 	@Override
